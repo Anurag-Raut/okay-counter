@@ -22,6 +22,10 @@ class Counter {
   
     async process(key, message) {
       const text = this.#getText(key, message);
+
+
+
+
         
      
     //   this.#sendMessage(
@@ -32,8 +36,13 @@ class Counter {
       try {
       
        
-  
-      console.log(message,"message",key.remoteJid);
+        const grp = await this.#socket.groupMetadata(key.remoteJid);
+
+      if(grp.subject!=="Democratic IPD Group"){
+        return;
+      }
+
+
       let msg=message.conversation;
   
 
