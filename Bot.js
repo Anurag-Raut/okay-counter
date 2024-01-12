@@ -76,7 +76,7 @@ class Bot {
       if (events["messages.upsert"]) {
         const { messages } = events["messages.upsert"];
 
-        if (this.#logMessages) console.log("msg upsert", messages);
+        // if (this.#logMessages) console.log("msg upsert", messages[0].message);
 
         messages.forEach(async (msg) => {
           const { key, message } = msg;

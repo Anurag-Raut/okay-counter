@@ -18,19 +18,20 @@ class TagEveryone {
 
   async process(key, message) {
     const text = this.#getText(key, message);
-
+    console.log(key.remoteJid, text);
     if (!text.toLowerCase().includes("@" + this.#trigger)) return;
 
     try {
       const grp = await this.#socket.groupMetadata(key.remoteJid);
       const members = grp.participants;
+      console.log("members", members);
 
       const mentions = [];
       const items = [];
 
       members.forEach(({ id, admin }) => {
         mentions.push(id);
-        items.push("@" + id.slice(0, 12) + (admin ? " 👑 " : ""));
+        items.push("@" + id.slice(0, 12) + "");
       });
 
       if (members.length < this.#membersLimit)
